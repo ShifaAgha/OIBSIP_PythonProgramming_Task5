@@ -1,94 +1,110 @@
 # Chat Application — OIBSIP Python Programming, Task 5
 
-A real-time command-line chat application in Python using socket programming.
-Supports multiple users chatting simultaneously through a central server.
-No external libraries needed — uses Python's built-in `socket` and `threading`.
+A real-time command-line Chat Application built in Python using socket programming. The application follows a client-server architecture, allowing multiple users to exchange messages simultaneously over a local network.
+
+No external libraries are required—it uses Python's built-in `socket` and `threading` modules.
+
+## Features
+
+* Real-time messaging between multiple clients
+* Client-server architecture using TCP sockets
+* Supports multiple users simultaneously
+* Broadcasts join and leave notifications
+* Gracefully handles client disconnections
+* Allows users to exit the chat using the `exit` command
+* Uses multithreading for simultaneous message sending and receiving
 
 ## How It Works
 
-- `server.py` acts as the central hub — it receives messages and broadcasts
-  them to all connected clients.
-- `client.py` is run by each user — it connects to the server, sends messages,
-  and displays messages from other users in real time.
-- Each client runs two threads: one for sending, one for receiving — so
-  messages appear instantly without blocking the user's input.
+* `server.py` acts as the central server that accepts client connections and broadcasts messages.
+* `client.py` connects to the server, sends messages, and receives messages from other connected users.
+* Each client runs separate threads for sending and receiving messages, ensuring smooth real-time communication.
 
 ## How to Run
 
-### Step 1 — Start the server (in one terminal):
+### Step 1 — Start the Server
+
 ```bash
 python server.py
 ```
-You'll see:
-```
+
+Expected output:
+
+```text
 Listening on 127.0.0.1:55555
 Waiting for clients to connect...
 ```
 
-### Step 2 — Open a NEW terminal and start the first client:
+### Step 2 — Start the First Client
+
+Open a new terminal and run:
+
 ```bash
 python client.py
 ```
-Enter a nickname when prompted (e.g. `Alice`).
 
-### Step 3 — Open ANOTHER new terminal for the second client:
+Enter a nickname when prompted (for example, `Alice`).
+
+### Step 3 — Start Another Client
+
+Open another terminal and run:
+
 ```bash
 python client.py
 ```
-Enter a different nickname (e.g. `Bob`).
 
-Now Alice and Bob can chat with each other in real time!
+Enter a different nickname (for example, `Bob`).
+
+You can now exchange messages between both clients in real time.
 
 ## Example Session
 
-**Terminal 1 (Server):**
-```
+**Server**
+
+```text
 [SERVER] Alice joined the chat.
 [SERVER] Bob joined the chat.
 [Alice] Hello Bob!
 [Bob] Hi Alice! How are you?
 ```
 
-**Terminal 2 (Alice):**
-```
+**Alice**
+
+```text
 You are connected! Start chatting.
 You: Hello Bob!
 [Bob] Hi Alice! How are you?
-You:
 ```
 
-**Terminal 3 (Bob):**
-```
+**Bob**
+
+```text
 You are connected! Start chatting.
 [Alice] Hello Bob!
 You: Hi Alice! How are you?
 ```
 
-## Features
-
-- Multiple clients can join the same chat room
-- Real-time message delivery using threads
-- Join/leave notifications broadcast to all users
-- Type `exit` to leave the chat gracefully
-- Handles disconnections and errors without crashing the server
-
 ## Key Concepts Used
 
-- **Socket Programming** — `socket.AF_INET` / `socket.SOCK_STREAM` (TCP)
-- **Threading** — separate thread per client on server; separate receive thread on client
-- **Client-Server Model** — server broadcasts to all, clients send/receive
-- **Error Handling** — graceful disconnection handling on both sides
+* Socket Programming (`socket`)
+* TCP Client-Server Architecture
+* Multithreading (`threading`)
+* Real-time Communication
+* Error Handling
+* Network Programming Fundamentals
 
 ## Project Structure
 
-```
+```text
 ShifaAgha_Task5/
-├── server.py    # run this first
-├── client.py    # run in separate terminals for each user
-└── README.md    # this file
+├── server.py      # server program
+├── client.py      # client program
+└── README.md      # documentation
 ```
 
 ## Author
 
-Shifa Agha — OIBSIP Python Programming Internship  
+**Shifa Agha**
+OIBSIP Python Programming Internship
+
 GitHub: https://github.com/ShifaAgha/OIBSIP
